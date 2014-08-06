@@ -12,7 +12,7 @@ touch /etc/container_environment.sh
 touch /etc/container_environment.json
 chmod 700 /etc/container_environment
 
-groupadd docker_env
+groupadd -g 8377 docker_env
 chown :docker_env /etc/container_environment.sh /etc/container_environment.json
 chmod 640 /etc/container_environment.sh /etc/container_environment.json
 ln -s /etc/container_environment.sh /etc/profile.d/
@@ -52,7 +52,7 @@ cp /build/insecure_key.pub /etc/insecure_key.pub
 cp /build/insecure_key /etc/insecure_key
 chmod 644 /etc/insecure_key*
 chown root:root /etc/insecure_key*
-cp /build/enable_insecure_key /usr/sbin/
+cp /build/bin/enable_insecure_key /usr/sbin/
 
 ## Install cron daemon.
 $minimal_apt_get_install cron
