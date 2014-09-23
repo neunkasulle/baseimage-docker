@@ -1,0 +1,3 @@
+#!/bin/bash
+export PATH="/opt/datadog-agent/embedded/bin:/opt/datadog-agent/bin:$PATH"
+exec supervisord -n -c /etc/dd-agent/supervisor.conf > /var/log/runit_datadog-agent.log 2>&1
