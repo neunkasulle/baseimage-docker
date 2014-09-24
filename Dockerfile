@@ -2,6 +2,7 @@ FROM ubuntu:12.04
 MAINTAINER Julian Klinck <jklinck@ocedo.com>
 
 ENV HOME /root
+RUN echo 'export HOME=/root' >> /root/.bashrc
 RUN mkdir /build
 ADD . /build
 
