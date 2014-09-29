@@ -40,13 +40,14 @@ $minimal_apt_get_install apt-transport-https ca-certificates
 
 ## Install add-apt-repository
 $minimal_apt_get_install software-properties-common
+$minimal_apt_get_install syslog-ng-mod-sql
 
 ## Install python3 for 12.04
 $minimal_apt_get_install python-software-properties
-$minimal_apt_get_install syslog-ng-mod-sql
-apt-get -y -q install python3.2
-ln -s /usr/bin/python3.2 /usr/bin/python3
 add-apt-repository -y ppa:fkrull/deadsnakes
+apt-get update
+apt-get -y -q install python3.4 python3.4-dev
+ln -s /usr/bin/python3.4 /usr/bin/python3
 
 ## Upgrade all packages.
 apt-get dist-upgrade -y --no-install-recommends
