@@ -23,6 +23,20 @@ $minimal_apt_get_install net-tools wget iputils-ping tcpdump netcat dnsutils
 ## Install runit.
 $minimal_apt_get_install runit
 
+## Install datadog monitoring
+echo 'deb http://apt.datadoghq.com/ stable main' > /etc/apt/sources.list.d/datadog.list
+apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 C7A7DA52
+apt-get update
+$minimal_apt_get_install datadog-agent
+$minimal_apt_get_install python-setuptools
+easy_install supervisor
+sed -i "/user=dd-agent/d" /etc/dd-agent/supervisor.conf
+cp /build/90_datadog.sh /etc/my_init.d/start/90_datadog.sh
+cp /build/runit/datadog-agent /opt/datadog-agent/runit
+chmod +x /opt/datadog-agent/runit
+rm /etc/apt/sources.list.d/datadog.list
+apt-get update
+
 ## Install a syslog daemon.
 $minimal_apt_get_install syslog-ng-core
 mkdir /etc/service/syslog-ng
